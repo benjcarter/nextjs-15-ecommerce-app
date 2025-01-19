@@ -2,12 +2,12 @@ import { unstable_cache } from "next/cache";
 
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import { Product } from "@/components/product";
-import { client } from "@/lib/hono";
+// import { client } from "@/lib/hono";
 import { type Product as ProductType } from "@/types";
 
 const getProducts = unstable_cache(async () => {
-  const res = await client.api.products.$get();
-  const { products } = await res.json();
+  const res = await fetch("https://fakestoreapi.com/products");
+  const products = await res.json();
 
   return products;
 });

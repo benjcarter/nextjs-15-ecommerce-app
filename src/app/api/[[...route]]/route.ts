@@ -5,8 +5,6 @@ import checkout from "@/app/api/[[...route]]/checkout";
 import orders from "@/app/api/[[...route]]/orders";
 import products from "@/app/api/[[...route]]/products";
 
-export const runtime = "edge";
-
 const app = new Hono().basePath("/api");
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

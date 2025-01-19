@@ -4,16 +4,6 @@ import { notFound } from "next/navigation";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import { ProductDetails } from "@/components/product-details";
 import { client } from "@/lib/hono";
-import { Product } from "@/types";
-
-export const generateStaticParams = async () => {
-  const res = await client.api.products.$get();
-  const { products } = await res.json();
-
-  return products.map((product: Product) => ({
-    id: product.id.toString()
-  }));
-};
 
 const getProduct = async (id: string) => {
   const res = await client.api.products[":id"].$get({ param: { id } });
