@@ -5,6 +5,15 @@ import MaxWidthWrapper from "@/components/max-width-wrapper";
 import { ProductDetails } from "@/components/product-details";
 import { client } from "@/lib/hono";
 
+export const generateStaticParams = async () => {
+  const res = await client.api.products.$get();
+  const { products } = await res.json();
+
+  return products.map((product) => ({
+    id: product.id.toString()
+  }));
+};
+
 const getProduct = async (id: string) => {
   const res = await client.api.products[":id"].$get({ param: { id } });
   if (!res.ok) return undefined;
